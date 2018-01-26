@@ -321,18 +321,18 @@ contract PausableToken is StandardToken, Pausable {
   }
 }
 
-contract RTCT4Token is PausableToken {
+contract RTCT6Token is PausableToken {
 
-    string public constant name = "RentyCoinTest4";
-    string public constant symbol = "RTCT4";
+    string public constant name = "RentyCoinTest6";
+    string public constant symbol = "RTCT6";
     uint public constant decimals = 18;
 
-    uint256 public constant INITIAL_SUPPLY = 5000*(10**decimals); // 50 million x 18 decimals to represent in wei (5000 for testing)
+    uint256 public constant INITIAL_SUPPLY = 50000000*(10**decimals); // 50 million x 18 decimals to represent in wei (5000 for testing)
 
     /**
      * @dev Contructor that gives msg.sender all of existing tokens.
      */
-    function RTCT4Token() public {
+    function RTCT6Token() public {
         totalSupply = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
         Transfer(0x0, msg.sender, INITIAL_SUPPLY);
