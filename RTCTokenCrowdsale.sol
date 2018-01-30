@@ -139,7 +139,7 @@ contract RtcTokenCrowdsale is Ownable, AddressWhitelist {
         if ((!(isCrowdSaleSetup))
             && (!(beneficiaryWallet > 0))){
             // init addresses
-            tokenReward                             = PausableToken(0x5a2149b1abd3485688f8805a089b8fb69c385f1b);
+            tokenReward                             = PausableToken(0xdb75BFC1ad984c5CeefA8Ec6394596e20d789034);
             beneficiaryWallet                       = 0xf07bd63C5cf404c2f17ab4F9FA1e13fCCEbc5255;
             tokensPerEthPrice                       = 10000;                  // 1 ETH = 10,000 RTC
 
@@ -154,13 +154,13 @@ contract RtcTokenCrowdsale is Ownable, AddressWhitelist {
 
             fundingStartTime                        = _fundingStartTime;
 
-            white_duration                          = 2 days;                        // 2 week (test = 2 hour)
-            p1_duration                             = 4 days;                       // 4 week (test = 2 hour)
+            white_duration                          = 2 weeks;                        // 2 week (test = 2 hour)
+            p1_duration                             = 4 weeks;                       // 4 week (test = 2 hour)
 
             p1_start                                = fundingStartTime + white_duration;
-            p2_start                                = p1_start + p1_duration + 4 days;   // + 4 week after p1 ends (test = 4 hour)
+            p2_start                                = p1_start + p1_duration + 4 weeks;   // + 4 week after p1 ends (test = 4 hour)
 
-            fundingEndTime                          = p2_start + 4 days; // + 4 week (test = 4 hour)
+            fundingEndTime                          = p2_start + 4 weeks; // + 4 week (test = 4 hour)
 
             // configure crowdsale
             isCrowdSaleSetup                        = true;
@@ -171,19 +171,19 @@ contract RtcTokenCrowdsale is Ownable, AddressWhitelist {
     function setBonusPrice() public constant returns (uint256 bonus) {
         require(isCrowdSaleSetup);
         require(p1_start + p1_duration <= p2_start);
-        if (now >= fundingStartTime && now <= p1_start) { // Private sale Bonus 40% = 5,000 RTC  = 1 ETH (test = 50 RTC)
+        if (now >= fundingStartTime && now <= p1_start) { // Private sale Bonus 40% = 4,000 RTC  = 1 ETH
             bonus = 4000;
         } else if (now > p1_start && now <= p1_start + p1_duration) { // Phase-1 Bonus 30% = 3,000 RTC  = 1 ETH
             bonus = 3000;
-        } else if (now > p2_start && now <= p2_start + 1 hours ) { // Phase-2 1st day Bonus 25% = 2,500 RTC = 1 ETH (test = +10 minute)
+        } else if (now > p2_start && now <= p2_start + 1 days ) { // Phase-2 1st day Bonus 25% = 2,500 RTC = 1 ETH
             bonus = 2500;
-        } else if (now > p2_start + 1 hours && now <= p2_start + 1 days ) { // Phase-2 week-1 Bonus 20% = 2,000 RTC = 1 ETH (test <= p2_start +1 hour)
+        } else if (now > p2_start + 1 days && now <= p2_start + 1 weeks ) { // Phase-2 week-1 Bonus 20% = 2,000 RTC = 1 ETH
             bonus = 2000;
-        } else if (now > p2_start + 1 days && now <= p2_start + 2 days ) { // Phase-2 week-2 Bonus +15% = 1,500 RTC = 1 ETH (test <= p2_start +2 hour)
+        } else if (now > p2_start + 1 weeks && now <= p2_start + 2 weeks ) { // Phase-2 week-2 Bonus +15% = 1,500 RTC = 1 ETH
             bonus = 1500;
-        } else if (now > p2_start + 2 days && now <= p2_start + 3 days ) { // Phase-2 week-3 Bonus +10% = 1,000 RTC = 1 ETH (test <= p2_start +3 hour)
+        } else if (now > p2_start + 2 weeks && now <= p2_start + 3 weeks ) { // Phase-2 week-3 Bonus +10% = 1,000 RTC = 1 ETH
             bonus = 1000;
-        } else if (now > p2_start + 3 days && now <= fundingEndTime ) { // Phase-2 final week Bonus 5% = 500 RTC = 1 ETH
+        } else if (now > p2_start + 3 weeks && now <= fundingEndTime ) { // Phase-2 final week Bonus 5% = 500 RTC = 1 ETH
             bonus = 500;
         } else {
             revert();
@@ -198,7 +198,7 @@ contract RtcTokenCrowdsale is Ownable, AddressWhitelist {
             && (now < p2_start)
             && (fundingStartTime + p1_duration < _newP2Start));
         p2_start = _newP2Start;
-        fundingEndTime = p2_start.add(4 days);   // 4 week (test = add(4 days))
+        fundingEndTime = p2_start.add(4 weeks);   // 4 week
     }
 
     // default payable function when sending ether to this contract
