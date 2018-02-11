@@ -139,12 +139,12 @@ contract RtcTokenCrowdsale is Ownable, AddressWhitelist {
         if ((!(isCrowdSaleSetup))
             && (!(beneficiaryWallet > 0))){
             // init addresses
-            tokenReward                             = PausableToken(0xdb75BFC1ad984c5CeefA8Ec6394596e20d789034);
-            beneficiaryWallet                       = 0xf07bd63C5cf404c2f17ab4F9FA1e13fCCEbc5255;
+            tokenReward                             = PausableToken(0xC9906549d5F31b6C6A920441e4c2C33EedCe97AB);
+            beneficiaryWallet                       = 0xd57fC702773698B9F84D6eaDaDe9E38E67Fe1C2E;
             tokensPerEthPrice                       = 10000;                  // 1 ETH = 10,000 RTC
 
             // funding targets
-            fundingMinCapInWei                      = 350 ether;                          //350 Eth (min cap) (test = 15) - crowdsale is considered success after this value
+            fundingMinCapInWei                      = 350;                          //350  (min cap) (test = 15) - crowdsale is considered success after this value
 
             // update values
             decimals                                = 18;

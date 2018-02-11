@@ -323,7 +323,7 @@ contract PausableToken is StandardToken, Pausable {
 
 contract RTCToken is PausableToken {
 
-    string public constant name = "RentyCoin";
+    string public constant name = "Rentything";
     string public constant symbol = "RTC";
     uint public constant decimals = 18;
 
